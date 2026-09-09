@@ -1,0 +1,39 @@
+---
+title: "UMD Fees"
+---
+
+Follow along with the demo to learn how to calculate percentage change using R and the Tidyverse. You should get started by loading the tidyverse in a new R block.
+
+
+### Task 1: Load the tidyverse
+
+
+```{r}
+library(tidyverse)
+```
+
+
+
+
+### Task 2: Load the UMD Fees dataset from https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/umd_fees.csv
+
+```{r}
+umd_fees <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/umd_fees.csv")
+```
+
+### Task 3: Calculate the percentage change in each category between Fall 2026 and Fall 2021 using `mutate()`
+
+```{r}
+umd_fees_pct <- umd_fees |> mutate(pct_change = (`Fall 2026`- `Fall 2021`)/`Fall 2021` * 100)
+```
+
+
+
+### Task 4: Describe the results
+
+Write a few sentences about what you found in those percentages. What's the story here? What questions do you have?
+
+Besides athletics, all the fees have had a change in percentage from Fall 2021 to Fall 2026. A category, such as student sustainability, has increased by 150%. This could be a story that looks at what fees in specific are causing this. Do students feel more sustainable on campus now that fees have increased? Another category that increased significantly are recreation services. The 21.4% increase in recreation service fees from Fall 2021 to Fall 2026 could also be a story. The story can strive to answer the question: what services in specific are causing recreation fees to rise? Does the rise in recreation service fees have a positive impact on the physical health of students? Do students feel like they are getting the most out of recreation services, or do the rise in fees not reflect this? The athletics fee has stayed stagnant, at $399. Another story could be why has this number stayed the same?
+
+
+When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
