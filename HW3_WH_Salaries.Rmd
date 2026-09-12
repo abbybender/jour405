@@ -1,0 +1,63 @@
+---
+title: "HW3 WH Salaries"
+---
+
+In this assignment, we will be working with a dataset containing information about the salaries of White House staffers as of July 2026.
+
+### Task 1: Load the Tidyverse
+
+You will need to load the tidyverse library
+
+```{r}
+library(tidyverse)
+```
+
+Then you'll load the data from the web. The URL for the data is: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/white_house_salaries_2026.csv. You will create a dataframe called `wh_salaries` that contains the data from this URL.
+
+### Task 2: Load the Data and Describe It
+
+```{r}
+wh_salaries <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/white_house_salaries_2026.csv")
+```
+### Task 3: Describe the Data
+
+You should examine that dataframe carefully by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the categories of incidents. From a reporting standpoint, what stands out to you about this data? Are there any salary values that will cause problems for analysis?
+
+```{r}
+#The higher up the White House position is, such as Senior Policy Advisor, the greater the salary is for that employee. This does not surprise me because these employees have more responsibility than a position such as a Special Assistant, so it would make sense that their salary reflects this. However, from a reporting standpoint, something that stands out to me about this data is that some people are listed as employees, while others are listed as detailee or part-time detailee. I would want to know what signifies one as an employee and what would make one a detailee. I also would want to know how some detailees make a higher salary than employees. Additionally, the salaries are a wide wage, ranging from $197,200 to $0. A lot of salaries are also in a middle range of about $92,500 to $133,500. I would want to know how these specific salaries are determined. Some salary values that would potentially cause problems for analysis would be a salary of $0. This would make analysis about averages more difficult. 
+```
+
+
+### Task 4: Calculate the Mean and Median of the Salaries
+
+Write code to calculate the mean and median of the salaries in the dataset using the `summarize()` function. You don't need to make a new dataframe, just display the results.
+
+```{r}
+wh_salaries |> summarise(mean_salary = mean(`SALARY`), median_salary = median(`SALARY`))
+```
+
+### Task 5: Add in the minimum and maximum salaries
+
+Take the code you just wrote and add in the minimum and maximum salaries (the functions for that are `min()` and `max()`). Your results should show four columns: mean_salary, median_salary, min_salary, max_salary.
+
+```{r}
+wh_salaries |> summarise(mean_salary = mean(`SALARY`), median_salary = median(`SALARY`), min_salary = min(`SALARY`), max_salary = max(`SALARY`))
+
+```
+
+### Task 6: Describe the Results
+
+Write a couple of sentences describing the results of your analysis. What do the mean and median salaries tell you about the data? What do the minimum and maximum salaries tell you? Are there any outliers in the data?
+
+ANSWER HERE
+```{r}
+#The mean salary tells me that an average White House salary is about $112,703. This tells me that a lot of White House workers make an income that would put them in the upper/upper middle class. The median salary tells me that a middle value for White House salaries is $109,243. This is also a high income, which about half of the employees make this amount or more. The minimum salary tells me that some people working in the White House make $0. I am interested to see who these people are and why they choose this work. The maximum salary tells me that people working at the White House can make a salary up to $197,200. This is considered an upper class salary that I think a majority of Americans do not make.
+```
+
+### Task 7: Story Idea
+
+Based on the data, what is your best story idea? What is the next step you would take to develop that story idea?
+
+```{r}
+#Based on the data, a story idea could be that despite the White House mean and median employee salary being $112,703 and $109,243, some employees do not make a salary. This story could look into why this is occurring and who these people are. I would want know: Why would staff or employees choose to work for free? Is there any benefit to their White House salary being $0? What determines a White House salary of $0? Therefore, the next step I would take to develop this story idea would be to research the job categories that earn a $0 salary, such as an Advisor or Chief Design Officer. Then, I would try to get the contact information of these individuals or people who have previously held this job to reach out to them. 
+```
