@@ -1,0 +1,37 @@
+---
+title: "HW4 MD CityCrime"
+---
+
+In this assignment, we will be working with a dataset of total crimes reported by Maryland cities for two consecutive years. You'll load the data, calculate the violent and property crime rates for each city for both years, and then calculate the percentage change in the crime rates between the two years. You'll also write a short story based on your findings.
+
+### Task 1: Load the Tidyverse and Janitor
+
+You will need to load the tidyverse library and the janitor library
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+Then you'll load the data from the web. The URL for the data is: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv. You will create a dataframe called `md_cities` that contains the data from this URL.
+
+### Task 2: Load the Data
+
+```{r}
+md_cities <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv")
+```
+### Task 3: Calculating Rates
+
+Calculate violent and property crime rates for each city for both years using `mutate()`. You'll create four new columns: `violent_rate_2019`, `property_rate_2019`, `violent_rate_2020`, and `property_rate_2020`. You'll need to figure out the proper unit rate, given that there are varying populations. There's no perfect choice; choose the one that works best for you. Save the results to a new dataframe called `md_cities_rates`.
+
+```{r}
+md_cities_rates <- md_cities |> mutate(violent_rate_2019 = violent2019/pop2019 * 100000, property_rate_2019 = property2019/pop2019 * 100000, property_rate_2020 = property2020/pop2020 * 100000)
+```
+
+### Task 4: Describe the Rates
+
+Examine the new dataframe, `md_cities_rates`, by clicking on it in the Environment tab in RStudio and sorting by the rate columns. Write a couple of sentences about the results, comparing and contrasting the cities with the highest rates (both violent and property) in 2019 and 2020. Do you see any patterns? What does this tell you about crime in Maryland cities? What's the story here?
+
+```{r}
+Baltimore City had the highest rate foe violent crimes in 2019. Ocean City had the highest rate of property crime in both 2019 and 2020. Some cities, such as University Park and Manchester, saw violent crime rates of zero in 2019. Some cities, such as Burkittsville, saw property crime rates of zero in 2019, and some cities, such as Barclay, saw property crime rates of zero in 2020. Therefore, pattern I saw is that many of the cities that have low rates of crime seem to be less populated. Baltimore City is densely populated. Thus, it could have higher violent crime rates because of this. Although Ocean City is not usually densely populated, it is in the summer when people visit and vacation there. This could explain why there is a high property crime rate in both 2019 and 2020. A story that could be reported using that information could look at if there is a correlation between a lot of tourism in the summer in Ocean City and high rates of property crime.  
+```
