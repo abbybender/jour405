@@ -8,7 +8,7 @@ Follow along with the demo to learn how to calculate crime rates using R and the
 
 ```{r}
 library(tidyverse)
-install.packages("janitor")
+#install.packages("janitor")
 library(janitor)
 ```
 
@@ -48,8 +48,8 @@ crimes_with_rates <- crimes |> mutate(violent_rate = violent_crime_total/populat
 
 Write a few sentences about what you found in the data. What years had the highest crime rates? What years had the lowest crime rates? Does the pattern match your expectations? What might explain some of the results you found?
 
-
-
+```{r}
+Based on the results, the highest crime rates were in the 1990s. During the early 90s, the crack epidemic was occurring, which could explain why these crime rates were so high. The lowest crime rates were in recent years, such as 2020. This could be the case because this was the peak year of COVID, so a lot of people were still quarantined. The patterns did match my expectations, because the early 90s became more violent through the rapid spread of drugs.``
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
 
