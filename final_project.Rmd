@@ -1,0 +1,24 @@
+---
+title: "final_project.Rmd"
+output: html_document
+date: "2026-11-04"
+---
+
+## Philadelphia Parking Violations
+
+```{r violations}
+parking_violations <- read.csv("~/Downloads/parking_violations (3).csv")
+
+
+https://opendataphilly.org/datasets/parking-violations/
+```
+
+## South Philadelphia Stadium District Events 
+
+```{r stadium}
+
+stadium_events <- read.csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/scssd_events.csv")
+
+```
+
+\
