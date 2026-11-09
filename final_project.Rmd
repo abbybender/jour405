@@ -4,21 +4,29 @@ output: html_document
 date: "2026-11-04"
 ---
 
+Hypothesis: the number of parking tickets increases when stadium event concerts occur at Philadelphia Stadium District, compared to the specific week or weekend when the event is not occurring.
+
+```{r}
+library(tidyverse)
+```
+
 ## Philadelphia Parking Violations
 
 ```{r violations}
-parking_violations <- read.csv("~/Downloads/parking_violations (3).csv")
+parking_violations <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/parking_19148.csv")
 
-
-https://opendataphilly.org/datasets/parking-violations/
 ```
+
+The source of this data is from from OpenDataPhilly, specifically parking violations that occurred near the zip code 19148. This zip code in South Philly that contains the South Philadelphia stadium and arena. This data is from 01-01-2012 to 12-31-2017. Important columns that will be used include issue_datetime, violation, and fine. These categories will help to compare when stadium events are occurring, when the violation is specifically meter expired or over time limit, and how much these violations cost. I think the categories provide sufficient information for analysis, but since I am specifically looking at parking tickets I do not know if I should just look at meter expiration or over time limit. Or, should I add both for my analysis?
 
 ## South Philadelphia Stadium District Events 
 
 ```{r stadium}
 
-stadium_events <- read.csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/scssd_events.csv")
+stadium_events <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/scssd_events.csv")
 
 ```
 
-\
+The source of this data is from South Philadelphia Stadium District's event calender. The data is from 01-01-2018 to 11-29-2026. Although this is a different time period than the parking violations, this will provide analysis and a similar structure to understand if the number of parking tickets increases when stadium event concerts occur at Philadelphia Stadium District. Important columns that will be used include date, event, time, and venue. These categories will help to filter the specific type of stadium event I am looking for, which are concerts. These categories will help to understand when more parking violations are given and what the dates are for these instances. I think the categories provide sufficient information for analysis, but many of the events do not have end times. They only have start times. I do not know if the end times would provide more of an explanation for why some parking violations are given out, or if this is irrelevant. 
+
+
