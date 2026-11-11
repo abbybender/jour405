@@ -1,0 +1,56 @@
+---
+title: "PG Murders and Heat"
+---
+
+Remember how we talked about people killing each other more when it's hot outside? Let's explore that relationship using homicide and temperature data from Prince George's County. You'll load the data, perform some basic statistical analysis, and create a scatterplot to explore the relationship. Follow the steps below to complete the assignment.
+
+### Task 1: Load the tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+
+### Task 2: Load the dataset from [https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_murder_temps.csv](https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_murder_temps.csv)
+
+```{r}
+pg_murders_heat <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_murder_temps.csv")
+```
+
+
+### Task 3: Use `summarize()` and the `cor()` function to calculate the correlation between murders and temperature, using the pearson method.
+
+```{r}
+pg_murders_heat |> summarize(correlation = cor(murders, temperature, method="pearson"))
+```
+
+
+### Task 4: Create a scatterplot of murders and temperature, using `geom_point()`. Your aes() will have temperatures on the x axis, murders on the y axis and add a label for the month (so label=month inside the aes()).
+
+```{r}
+
+pg_murders_heat |> 
+  ggplot() +
+  geom_point(aes(x=temperature, y=murders, label=month)) +
+  geom_smooth(aes(x=temperature, y=murders, method="lm"))
+
+```
+
+
+### Task 5: Add labels to the scatterplot using geom_text(). Inside geom_text() put the same aes() as geom_point in Task 4, then after the aes() add size = 5.
+
+```{r}
+
+pg_murders_heat |> 
+  ggplot() + geom_point(aes(x=temperature, y=murders, label=month)) +
+  geom_text(aes(x=temperature, y=murders, label=month), size = 5) +
+  geom_smooth(aes(x=temperature, y=murders, method="lm"))
+
+```
+
+
+### Task 6: Describe the results of both the correlation calculation and the scatterplot.
+
+The correlation calculation was about 0.5, which indicates a decent/moderate relationship between hot temperatures and murders in Prince George's County. This is a number that is close to 1. Therefore, as temperatures increase, so do homicides. The scatterplot also indicates this statement because the line of best fit is highest for the months of July and August. The temperature is about 80 degrees and the murder rate is about 40. However, some colder months do have higher murder rates than warmer months. For example the month of October has a higher murder rate than the month of April.
+
+When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
