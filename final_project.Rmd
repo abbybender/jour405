@@ -4,6 +4,11 @@ output: html_document
 date: "2026-11-04"
 ---
 
+## Potential Tests to Run
+
+Tests that I could run for this include calculating the mean for parking violations and the mean for when there are stadium concert events. Additionally, you could also find the median values for both of those as well. I would also want to create a histogram to show the distribution of parking violations during the stadium concert events to create a visual. I do not know if this would be helpful, but finding rates, such as when the highest rate of parking tickets were could help to see if the hypothesis is accurate. Also, finding the percent change for event tickets and non ticket events. I could also compare the standard deviation of parking tickets between the event and non event days. I am not sure if this would be helpful, but I could also run a z-score test for unusually high parking ticket days during a stadium concert event. I could also perform a t-test with a null and alternative hypothesis. This would help see if parking tickets and stadium are statistically significant.
+
+
 Hypothesis: the number of parking tickets increases when stadium event concerts occur at Philadelphia Stadium District, compared to the specific week or weekend when the event is not occurring.
 
 ```{r}
@@ -23,10 +28,9 @@ The source of this data is from from OpenDataPhilly, specifically parking violat
 
 ```{r stadium}
 
-stadium_events <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/scssd_events.csv")
+stadium_events <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/scssd_events2012.csv")
 
 ```
 
-The source of this data is from South Philadelphia Stadium District's event calender. The data is from 01-01-2018 to 11-29-2026. Although this is a different time period than the parking violations, this will provide analysis and a similar structure to understand if the number of parking tickets increases when stadium event concerts occur at Philadelphia Stadium District. Important columns that will be used include date, event, time, and venue. These categories will help to filter the specific type of stadium event I am looking for, which are concerts. These categories will help to understand when more parking violations are given and what the dates are for these instances. I think the categories provide sufficient information for analysis, but many of the events do not have end times. They only have start times. I do not know if the end times would provide more of an explanation for why some parking violations are given out, or if this is irrelevant. 
-
+The source of this data is from South Philadelphia Stadium District's event calender. The data is from 01-01-2012 to 12-30-2017. This will provide analysis on if the number of parking tickets increases when stadium event concerts occur at Philadelphia Stadium District. Important columns that will be used include date, event, time, and venue. These categories will help to filter the specific type of stadium event I am looking for, which are concerts. These categories will help to understand when more parking violations are given and what the dates are for these instances. I think the categories provide sufficient information for analysis, but many of the events do not have end times. They only have start times. I do not know if the end times would provide more of an explanation for why some parking violations are given out, or if this is irrelevant. 
 
