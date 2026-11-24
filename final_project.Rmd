@@ -32,6 +32,9 @@ t_test_events
 I tried to run a t-test could compare daily averages. My null hypothesis was that average daily ticket count is the same on event and comparison days. My alternative hypothesis was that there is a change associated the number of daily ticket count and on event days. However, this gave an error in t.test.formula(tickets ~ event, data = ticket_event_count_combined) : grouping factor must have exactly 2 levels. If events has fewer than two levels, is it possible to conduct a t-test, or do I use a different variable?
 
 
+Link to coding assistance: https://chatgpt.com/share/6b061d61-b078-83ea-a563-5bbf61c61979
+
+
 
 ## Potential Tests to Run
 
