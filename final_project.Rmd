@@ -7,7 +7,7 @@ date: "2026-11-04"
 ## Running Tests
 
 ## Mean, median and standard deviation of daily ticket counts on event versus nonevent days
-daily_ticket_count <- parking_violations |> group_by(issue_datetime = as.Date(issue_datetime)) |> summarize(tickets = n())
+daily_ticket_count <- parking_violations |> group_by(issue_datetime = as.Date(issue_datetime)) |> count(name = "tickets")
 daily_event_count <- stadium_events |> count(date, event, name = "event_count")
 ticket_event_count_combined <- daily_ticket_count |> left_join(daily_event_count, by = c("issue_datetime" = "date"))
 ticket_event_count_combined |> group_by(event) |> summarize (mean_tickets = mean(tickets), sd_tickets = sd(tickets), median_tickets = median(tickets))
