@@ -4,6 +4,35 @@ output: html_document
 date: "2026-11-04"
 ---
 
+## Running Tests
+
+## Mean, median and standard deviation of daily ticket counts on event versus nonevent days
+daily_ticket_count <- parking_violations |> group_by(issue_datetime = as.Date(issue_datetime)) |> summarize(tickets = n())
+daily_event_count <- stadium_events |> count(date, event, name = "event_count")
+ticket_event_count_combined <- daily_ticket_count |> left_join(daily_event_count, by = c("issue_datetime" = "date"))
+ticket_event_count_combined |> group_by(event) |> summarize (mean_tickets = mean(tickets), sd_tickets = sd(tickets), median_tickets = median(tickets))
+
+I tried to create a data frame for the daily ticket count and daily event count. I have successfully created these two environments (after failed attempts and using AI as a resource, which will be linked). I used the count() function and as.Date() function to generate totals and get proper dates. I then combined the two datasets and called it ticket_event_count_combined. I used ticket_event_count_combined with the left_join() function, which I was advised to do so after I kept getting errors. However, I am unsure if this correct because this shows event and event count. Some of the rows say N/A as well. I do not know if I should filter these out or create a new dataset of non event days with violarions. Lastly, I found the mean, standard deviation, and median of tickets for each event. I found that the 2016 Democratic National Convention has a mean ticket count of 169. The 8:00 PM FDR Park Boathouse Movie: Finding Dory had a mean ticket count of 184. There are 636 more rows of data and it says use print(n = ...) to see more, but I am struggling to see the rest. Some confusion I still have is that I do not know how to find the mean, standard deviation, and median of tickets for non event days. Should I create another dataset? Additionally, is there an easier function than as.Date to see the actual numbers? 
+                               
+
+#Histogram
+ggplot(ticket_event_count_combined, aes(x = tickets)) + geom_histogram(binwidth = 20, color = "Red") + labs( title = "Distribution of Parking Tickets", x = "Number of Parking Tickets", y = "Number of Dates" )
+
+I created a histogram using the ticket_event_count_combined data. However, I am very confused on this histogram because I think the y-axis is showing the row count, not the actual number of dates. I am unsure if I should then go back and fix ticket_event_count_combined code, or is this something I can refine in my histogram?
+
+
+# T-test
+**Null Hypothesis:** The average daily ticket count in Philadelphia near the zip code 19148 is the same on event and comparison days
+**Alternative Hypothesis:** There is a change associated the number of daily ticket count and on event days in Philadelphia near the zip code 19148
+
+ 
+t_test_events <- t.test(tickets ~ event, data = ticket_event_count_combined)
+t_test_events
+
+I tried to run a t-test could compare daily averages. My null hypothesis was that average daily ticket count is the same on event and comparison days. My alternative hypothesis was that there is a change associated the number of daily ticket count and on event days. However, this gave an error in t.test.formula(tickets ~ event, data = ticket_event_count_combined) : grouping factor must have exactly 2 levels. If events has fewer than two levels, is it possible to conduct a t-test, or do I use a different variable?
+
+
+
 ## Potential Tests to Run
 
 Tests that I could run for this include calculating the mean for parking violations and the mean for when there are stadium concert events. Additionally, you could also find the median values for both of those as well. I would also want to create a histogram to show the distribution of parking violations during the stadium concert events to create a visual. I do not know if this would be helpful, but finding rates, such as when the highest rate of parking tickets were could help to see if the hypothesis is accurate. Also, finding the percent change for event tickets and non ticket events. I could also compare the standard deviation of parking tickets between the event and non event days. I am not sure if this would be helpful, but I could also run a z-score test for unusually high parking ticket days during a stadium concert event. I could also perform a t-test with a null and alternative hypothesis. This would help see if parking tickets and stadium are statistically significant.
